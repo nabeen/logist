@@ -16,6 +16,14 @@ def main():
         return
 
     space_key = host.replace(".backlog.com", "")
+    data = get_data(space_key=space_key, api_key=api_key,
+                    assignee_id=assignee_id)
+    for v in data:
+        print(v['summary'], 'https://'+host+'/view/'+v['issueKey'])
+    click.secho('SUCCESS!!', fg='green')
+
+
+def get_data(space_key, api_key, assignee_id):
     config = BacklogComConfigure(space_key=space_key, api_key=api_key)
     issue_api = Issue(config)
     # TODO: more filter
@@ -25,6 +33,4 @@ def main():
         raise ValueError('failed get issues')
 
     data = json.loads(response.text)
-    for v in data:
-        print(v['summary'], 'https://'+host+'/view/'+v['issueKey'])
-    click.secho('SUCCESS!!', fg='green')
+    return data

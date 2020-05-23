@@ -18,10 +18,9 @@ def show():
 
 
 @cmd.command(help='export issues to Todoist')
-@click.option('-i', '--issues', 'issues', help='Input issues-id separated with comma', required=True)
-def export(issues):
+def export():
     click.echo('Start export...')
-    exporter.main(issues)
+    exporter.main()
 
 
 @cmd.command(help='configure your setting')
