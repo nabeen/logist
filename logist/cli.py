@@ -1,15 +1,25 @@
 """Console script for logist."""
 import sys
 import click
+import logist
 import logist.setting as setting
 import logist.viewer as viewer
 import logist.exporter as exporter
 from pyfiglet import Figlet
 
 
-@click.group()
-def cmd():
-    pass
+@click.group(invoke_without_command=True)
+@click.option('-V', '--version', 'version', is_flag=True, help='Show version.')
+@click.pass_context
+def cmd(ctx, version):
+    # nothing subcommand
+    if ctx.invoked_subcommand is None:
+        f = Figlet(font='slant')
+        click.echo(f.renderText('logist'))
+
+    # for option
+    if ctx.invoked_subcommand is None and version:
+        click.echo('v'+logist.__version__)
 
 
 @cmd.command(help='show issues from Backlog')
@@ -31,9 +41,6 @@ def configure():
 
 
 def main():
-    f = Figlet(font='slant')
-    click.echo(f.renderText('logist'))
-
     cmd()
 
 
