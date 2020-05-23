@@ -1,6 +1,10 @@
 from PyInquirer import style_from_dict, Token, prompt
 import configparser
 import click
+import os
+import errno
+
+config_path = 'secrets'
 
 style = style_from_dict({
     Token.QuestionMark: '#E91E63 bold',
@@ -56,12 +60,20 @@ def set_config(config, section, items):
     return config
 
 
-def read_config():
-    pass
+def read_config(section, key):
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(errno.ENOENT, os.strerror(
+            errno.ENOENT), config_path)
+
+    config = configparser.ConfigParser()
+    config.read(config_path)
+
+    read_default = config[section]
+    return read_default.get(key)
 
 
 def write_config(config):
-    with open('secrets', 'w') as file:
+    with open(config_path, 'w') as file:
         config.write(file)
 
     return True
