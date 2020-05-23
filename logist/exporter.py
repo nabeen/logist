@@ -1,9 +1,9 @@
-from PyInquirer import style_from_dict, Token, prompt, Separator
 import configparser
-import setting
 import click
-import viewer
+import logist.setting as setting
+import logist.viewer as viewer
 from todoist.api import TodoistAPI
+from PyInquirer import style_from_dict, Token, prompt, Separator
 
 
 def main():

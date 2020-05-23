@@ -1,9 +1,10 @@
 """Console script for logist."""
 import sys
 import click
-import setting
-import viewer
-import exporter
+import logist.setting as setting
+import logist.viewer as viewer
+import logist.exporter as exporter
+from pyfiglet import Figlet
 
 
 @click.group()
@@ -34,4 +35,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()  # pragma: no cover
+    f = Figlet(font='slant')
+    click.echo(f.renderText('logist'))
+
+    sys.exit(main())
