@@ -1,5 +1,5 @@
 import configparser
-import todoist
+from todoist.api import TodoistAPI
 
 
 def main(issues):
@@ -8,9 +8,9 @@ def main(issues):
     config_file.read('secrets')
 
     item_list = ['test1', 'test2']
-    api = todoist.TodoistAPI(config_file['todoist']['ApiKey'])
+    api = TodoistAPI(config_file['todoist']['ApiKey'])
     api.sync()
     for item in item_list:
-        api.add_item(item)
+        api.items.add(item, due={"string": "today"})
 
     api.commit()
