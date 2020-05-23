@@ -4,7 +4,7 @@ import click
 import os
 import errno
 
-config_path = 'secrets'
+config_path = os.environ['HOME']+'/.logist'
 
 style = style_from_dict({
     Token.QuestionMark: '#E91E63 bold',
@@ -47,8 +47,21 @@ def main():
     config = configparser.ConfigParser()
     config.optionxform = str
 
-    config = set_config(config, 'backlog', prompt(q_backlog, style=style))
-    config = set_config(config, 'todoist', prompt(q_todoist, style=style))
+    # input for backlog
+    click.secho('set for backlog', fg='magenta')
+    a_backlog = prompt(q_backlog, style=style)
+    if not a_backlog:
+        return
+
+    # input for todoist
+    click.secho('set for todoist', fg='magenta')
+    a_todoist = prompt(q_todoist, style=style)
+    if not a_todoist:
+        return
+
+    # configure and write ConfigParser object
+    config = set_config(config, 'backlog', a_backlog)
+    config = set_config(config, 'todoist', a_todoist)
     if write_config(config):
         click.secho('SUCCESS!!', fg='green')
 
