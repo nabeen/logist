@@ -31,11 +31,11 @@ def configure():
 
 
 def main():
+    f = Figlet(font='slant')
+    click.echo(f.renderText('logist'))
+
     cmd()
 
 
 if __name__ == "__main__":
-    f = Figlet(font='slant')
-    click.echo(f.renderText('logist'))
-
     sys.exit(main())
