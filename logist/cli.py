@@ -2,8 +2,8 @@
 import sys
 import click
 import setting
-import backlog
-import todoist
+import viewer
+import exporter
 
 
 @click.group()
@@ -14,14 +14,14 @@ def cmd():
 @cmd.command(help='show issues from Backlog')
 def show():
     click.echo('Start show...')
-    backlog.main()
+    viewer.main()
 
 
 @cmd.command(help='export issues to Todoist')
-@click.option('-id', '--issues-id', 'id', help='Input issues-id separated with comma', required=True)
-def export(id):
+@click.option('-i', '--issues', 'issues', help='Input issues-id separated with comma', required=True)
+def export(issues):
     click.echo('Start export...')
-    todoist.main()
+    exporter.main(issues)
 
 
 @cmd.command(help='configure your setting')
