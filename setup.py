@@ -10,11 +10,12 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', 'todoist-python', 'pybacklogpy', 'PyInquirer']
+requirements = ['Click>=7.0', 'todoist-python',
+                'pybacklogpy', 'PyInquirer', 'pyfiglet']
 
-setup_requirements = [ ]
+setup_requirements = []
 
-test_requirements = [ ]
+test_requirements = []
 
 setup(
     author="Kenichiro Watanabe",

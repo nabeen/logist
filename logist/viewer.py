@@ -1,9 +1,9 @@
-from pybacklogpy.BacklogConfigure import BacklogComConfigure
-from pybacklogpy.Issue import Issue
 import json
 import configparser
 import click
-import setting
+import logist.setting as setting
+from pybacklogpy.BacklogConfigure import BacklogComConfigure
+from pybacklogpy.Issue import Issue
 
 
 def main():
