@@ -1,11 +1,11 @@
 {
-    "name": "Python 3 Sample",
+    "name": "logist",
     "build": {
         "dockerfile": "Dockerfile",
         "context": "..",
         // Update 'VARIANT' to pick a Python version. Rebuild the container
         // if it already exists to update. Available variants: 3, 3.6, 3.7, 3.8
-        "args": { "VARIANT": "3.7" }
+        "args": { "VARIANT": "3.8" }
     },
 
     // Set *default* container specific settings.json values on container create.
@@ -27,13 +27,13 @@
     },
 
     // Add the IDs of extensions you want installed when the container is created.
-    "extensions": ["ms-python.python"],
+    "extensions": ["ms-python.python", "knisterpeter.vscode-commitizen"],
 
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     "forwardPorts": [9000],
 
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "pip3 install -r requirements.txt",
+    "postCreateCommand": "sudo pip3 install -r requirements_dev.txt; sudo python setup.py install; sudo pip3 install -e .",
 
     // Comment out to connect as root instead.
     "remoteUser": "vscode"
