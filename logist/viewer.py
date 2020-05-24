@@ -4,6 +4,7 @@ import click
 import logist.setting as setting
 from pybacklogpy.BacklogConfigure import BacklogComConfigure
 from pybacklogpy.Issue import Issue
+from datetime import date, datetime, timedelta
 
 
 def main():
@@ -26,8 +27,11 @@ def main():
 def get_data(space_key, api_key, assignee_id):
     config = BacklogComConfigure(space_key=space_key, api_key=api_key)
     issue_api = Issue(config)
-    # TODO: more filter
-    response = issue_api.get_issue_list(assignee_id=[assignee_id])
+
+    in_week = date.today() + timedelta(7)
+    # TODO: status set to config file
+    response = issue_api.get_issue_list(
+        assignee_id=[assignee_id], status_id=[1], sort='dueDate', order='asc', due_date_until=in_week)
 
     if not response.ok:
         raise ValueError('failed get issues')

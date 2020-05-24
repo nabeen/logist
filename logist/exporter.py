@@ -20,13 +20,21 @@ def main():
     space_key = host.replace(".backlog.com", "")
     data = viewer.get_data(space_key=space_key, api_key=backlog_api_key,
                            assignee_id=assignee_id)
+
+    choices = []
+    d = ''
+    for v in data:
+        if d is not v['dueDate']:
+            choices.append(Separator(v['dueDate']))
+        choices.append({'name': '['+v['summary']+']'+'(https://'+host+'/view/'+v['issueKey']+')'})
+
     questions = [
         {
             'type': 'checkbox',
             'qmark': '✅',
             'message': 'Select issues',
             'name': 'issues',
-            'choices': [{'name': '['+v['summary']+']'+'(https://'+host+'/view/'+v['issueKey']+')'} for v in data],
+            'choices': choices,
             'validate': lambda answer: 'You must choose at least one issues.'
             if len(answer) == 0 else True
         }
