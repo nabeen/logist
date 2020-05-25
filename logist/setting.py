@@ -2,7 +2,6 @@ from PyInquirer import style_from_dict, Token, prompt
 import configparser
 import click
 import os
-import errno
 
 config_path = os.environ['HOME']+'/.logist'
 
@@ -70,19 +69,27 @@ def set_config(config, section, items):
     config.add_section(section)
     for k, v in items.items():
         config.set(section, k, v)
+
     return config
 
 
 def read_config(section, key):
     if not os.path.exists(config_path):
-        raise FileNotFoundError(errno.ENOENT, os.strerror(
-            errno.ENOENT), config_path)
+        raise FileNotFoundError('no such fie:', config_path)
 
     config = configparser.ConfigParser()
     config.read(config_path)
 
-    read_default = config[section]
-    return read_default.get(key)
+    if section not in config:
+        raise KeyError('no such section:', section)
+
+    arr = config[section]
+    val = arr.get(key)
+
+    if not val:
+        raise KeyError('no such key or value:', key)
+
+    return val
 
 
 def write_config(config):

@@ -25,9 +25,6 @@ RUN mkdir -p ${PIP_TARGET} \
     && echo "$SNIPPET" | tee -a /root/.bashrc >> /home/vscode/.bashrc \
     && echo "$SNIPPET" | tee -a /root/.zshrc >> /home/vscode/.zshrc
 
-# add config for development
-COPY secrets /home/vscode/.logist
-
 # [Optional] Uncomment this section to install additional packages.
 #
 # ENV DEBIAN_FRONTEND=noninteractive
