@@ -7,7 +7,7 @@ Task Manager for Pomodoro Technique with Backlog and Todoist.
 * Free software: MIT license
 
 How to use Todoist as Pomodoro Technique?
---------
+---------------------------------------------------------
 
 See `official site`_.
 
@@ -17,7 +17,8 @@ Install
 --------
 
 .. code-block:: shell
-    pip install git+https://github.com/nabeen/logist
+
+    $ pip install git+https://github.com/nabeen/logist
 
 Usage
 --------
@@ -25,12 +26,13 @@ Usage
 first, you should create config file with `configure` command.
 
 .. code-block:: shell
+
     $ logist configure
 
-and you can use `show` and `export` command. Have fun:)
+and you can use show and export command. Have fun:)
 
 For Developer
---------
+------------------
 
 - VS Code: Use Dev Container with `Remote - Containers`_ extension.
 - Other: You should use virtualenv or other tools.
@@ -40,12 +42,10 @@ For Developer
 Features
 --------
 
-* TODO
-
-- |uncheck| Test case
-- |uncheck| Documentation
-- |uncheck| Add more filter from Backlog with interactive
-- |uncheck| Error Handle, and Error Message
+- [ ] Test case
+- [ ] Documentation
+- [ ] Add more filter from Backlog with interactive
+- [ ] Error Handle, and Error Message
 
 Credits
 -------
